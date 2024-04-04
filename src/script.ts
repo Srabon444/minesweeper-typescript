@@ -1,7 +1,6 @@
 // Display/UI
 
 import {
-    TILE_STATUSES,
     createBoard,
     markTile,
     revealTile,
@@ -77,11 +76,11 @@ boardElement.addEventListener("click", (e) => {
         render();
     });
 
-    boardElement.style.setProperty("--size", BOARD_SIZE);
+    boardElement.style.setProperty("--size", BOARD_SIZE.toString());
     render();
 
     function listMinesLeft() {
-        minesLeftText.textContent = NUMBER_OF_MINES - markedTilesCount(board);
+        minesLeftText.textContent = `${NUMBER_OF_MINES - markedTilesCount(board)}`;
     }
 
     function checkGameEnd() {
@@ -100,7 +99,7 @@ boardElement.addEventListener("click", (e) => {
             messageText.textContent = "You Lose";
             board.forEach((row) => {
                 row.forEach((tile) => {
-                    if (tile.status === TILE_STATUSES.MARKED) board = markTile(board, tile);
+                    if (tile.status === "marked") board = markTile(board, tile);
                     if (tile.mine) board = revealTile(board, tile);
                 });
             });
