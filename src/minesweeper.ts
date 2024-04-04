@@ -9,6 +9,7 @@ type Position = {
 
 type Tile = Position & {
     mine: boolean;
+    adjacentMinesCount?: number;
     status: TileStatus;
 }
 
@@ -74,14 +75,14 @@ function replaceTile(board: Board, position: Position, newTile: Tile) {
     })
 }
 
-export function revealTile(board, {x, y}) {
+export function revealTile(board: Board, {x, y}: Position): Board {
     const tile = board[x][y]
     if (tile.status !== "hidden") {
         return board
     }
 
     if (tile.mine) {
-        return replaceTile(board, {x, y}, {...tile, status: TILE_STATUSES.MINE})
+        return replaceTile(board, {x, y}, {...tile, status: "mine"})
     }
 
     const adjacentTiles = nearbyTiles(board, tile)
@@ -89,7 +90,7 @@ export function revealTile(board, {x, y}) {
     const newBoard = replaceTile(
         board,
         {x, y},
-        {...tile, status: TILE_STATUSES.NUMBER, adjacentMinesCount: mines.length}
+        {...tile, status: "number", adjacentMinesCount: mines.length}
     )
     if (mines.length === 0) {
         return adjacentTiles.reduce((b, t) => {
