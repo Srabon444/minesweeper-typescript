@@ -39,26 +39,26 @@ export function markedTilesCount(board:Board) {
     }, 0)
 }
 
-export function markTile(board, {x, y}) {
+export function markTile(board: Board, {x, y}: Position) {
     const tile = board[x][y]
     if (
-        tile.status !== TILE_STATUSES.HIDDEN &&
-        tile.status !== TILE_STATUSES.MARKED
+        tile.status !== "hidden" &&
+        tile.status !== "marked"
     ) {
         return board
     }
 
-    if (tile.status === TILE_STATUSES.MARKED) {
+    if (tile.status === "marked") {
         return replaceTile(
             board,
             {x, y},
-            {...tile, status: TILE_STATUSES.HIDDEN}
+            {...tile, status: "hidden"}
         )
     } else {
         return replaceTile(
             board,
             {x, y},
-            {...tile, status: TILE_STATUSES.MARKED}
+            {...tile, status: "marked"}
         )
     }
 }
@@ -76,7 +76,7 @@ function replaceTile(board, position, newTile) {
 
 export function revealTile(board, {x, y}) {
     const tile = board[x][y]
-    if (tile.status !== TILE_STATUSES.HIDDEN) {
+    if (tile.status !== "hidden") {
         return board
     }
 
@@ -105,8 +105,8 @@ export function checkWin(board) {
             return (
                 tile.status === TILE_STATUSES.NUMBER ||
                 (tile.mine &&
-                    (tile.status === TILE_STATUSES.HIDDEN ||
-                        tile.status === TILE_STATUSES.MARKED))
+                    (tile.status === "hidden" ||
+                        tile.status === "marked"))
             )
         })
     })
