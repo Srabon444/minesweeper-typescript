@@ -9,7 +9,7 @@ import {
   checkLose,
   positionMatch,
   markedTilesCount,
-} from "./minesweeper.js"
+} from "./minesweeper.ts"
 
 const BOARD_SIZE = 10
 const NUMBER_OF_MINES = 10
