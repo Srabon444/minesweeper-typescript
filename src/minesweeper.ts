@@ -125,7 +125,7 @@ export function positionMatch(a: Position, b: Position) {
     return a.x === b.x && a.y === b.y
 }
 
-function nearbyTiles(board, {x, y}) {
+function nearbyTiles(board: Board, {x, y}: Position) {
     const offsets = range(-1, 2)
 
     return offsets
