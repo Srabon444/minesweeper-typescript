@@ -8,7 +8,7 @@ import {
     checkLose,
     positionMatch,
     markedTilesCount,
-    Tile,
+    Tile, Position,
 } from "./minesweeper.ts";
 
 const BOARD_SIZE = 10;
@@ -106,12 +106,12 @@ boardElement.addEventListener("click", (e) => {
         }
     }
 
-    function stopProp(e) {
+    function stopProp(e: Event) {
         e.stopImmediatePropagation();
     }
 
-    function getMinePositions(boardSize, numberOfMines) {
-        const positions = [];
+    function getMinePositions(boardSize: number, numberOfMines: number) {
+        const positions: Position[] = [];
 
         while (positions.length < numberOfMines) {
             const position = {
@@ -127,6 +127,6 @@ boardElement.addEventListener("click", (e) => {
         return positions;
     }
 
-    function randomNumber(size) {
+    function randomNumber(size: number) {
         return Math.floor(Math.random() * size);
     }
