@@ -1,19 +1,22 @@
 import {times, range} from "lodash/fp"
 
+type TileStatus = typeof TILE_STATUSES[number];
+
 type Position = {
     x: number;
     y: number;
 }
 
-
-export const TILE_STATUSES = {
-    HIDDEN: "hidden",
-    MINE: "mine",
-    NUMBER: "number",
-    MARKED: "marked",
+type Tile = Position & {
+    mine: boolean;
+    status: TileStatus;
 }
 
-export function createBoard(boardSize: number, minePositions: Position[]) {
+type Board = Tile[][];
+
+export const TILE_STATUSES = ["hidden", "mine", "number", "marked"] as const;
+
+export function createBoard(boardSize: number, minePositions: Position[]):Board {
     return times(x => {
         return times(y => {
             return {
@@ -22,7 +25,7 @@ export function createBoard(boardSize: number, minePositions: Position[]) {
                 mine: minePositions.some(minePos => {
                     positionMatch(minePos, {x, y})
                 }),
-                status: TILE_STATUSES.HIDDEN,
+                status: "hidden",
             }
         }, boardSize)
     }, boardSize)
