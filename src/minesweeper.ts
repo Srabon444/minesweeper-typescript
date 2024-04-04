@@ -100,11 +100,11 @@ export function revealTile(board: Board, {x, y}: Position): Board {
     return newBoard
 }
 
-export function checkWin(board) {
+export function checkWin(board: Board) {
     return board.every(row => {
         return row.every(tile => {
             return (
-                tile.status === TILE_STATUSES.NUMBER ||
+                tile.status === "number" ||
                 (tile.mine &&
                     (tile.status === "hidden" ||
                         tile.status === "marked"))
@@ -113,10 +113,10 @@ export function checkWin(board) {
     })
 }
 
-export function checkLose(board) {
+export function checkLose(board: Board) {
     return board.some(row => {
         return row.some(tile => {
-            return tile.status === TILE_STATUSES.MINE
+            return tile.status === "mine"
         })
     })
 }
