@@ -31,10 +31,10 @@ export function createBoard(boardSize: number, minePositions: Position[]):Board 
     }, boardSize)
 }
 
-export function markedTilesCount(board) {
+export function markedTilesCount(board:Board) {
     return board.reduce((count, row) => {
         return (
-            count + row.filter(tile => tile.status === TILE_STATUSES.MARKED).length
+            count + row.filter(tile => tile.status === "marked").length
         )
     }, 0)
 }
