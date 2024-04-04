@@ -63,7 +63,7 @@ export function markTile(board: Board, {x, y}: Position) {
     }
 }
 
-function replaceTile(board, position, newTile) {
+function replaceTile(board: Board, position: Position, newTile: Tile) {
     return board.map((row, x) => {
         return row.map((tile, y) => {
             if (positionMatch(position, {x, y})) {
