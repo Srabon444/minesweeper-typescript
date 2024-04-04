@@ -8,7 +8,8 @@ import {
   checkWin,
   checkLose,
   positionMatch,
-  markedTilesCount, Tile,
+  markedTilesCount,
+  Tile,
 } from "./minesweeper.ts";
 
 const BOARD_SIZE = 10;
@@ -19,7 +20,8 @@ let board = createBoard(
   getMinePositions(BOARD_SIZE, NUMBER_OF_MINES),
 );
 const boardElement = document.querySelector<HTMLDivElement>(".board")!;
-const minesLeftText = document.querySelector<HTMLSpanElement>("[data-mine-count]")!;
+const minesLeftText =
+  document.querySelector<HTMLSpanElement>("[data-mine-count]")!;
 const messageText = document.querySelector<HTMLDivElement>(".subtext")!;
 
 function render() {
@@ -44,7 +46,9 @@ function tileToElement(tile: Tile) {
   element.dataset.status = tile.status;
   element.dataset.x = tile.x.toString();
   element.dataset.y = tile.y.toString();
-  element.textContent = tile.adjacentMinesCount ? tile.adjacentMinesCount.toString() : "";
+  element.textContent = tile.adjacentMinesCount
+    ? tile.adjacentMinesCount.toString()
+    : "";
   return element;
 }
 
