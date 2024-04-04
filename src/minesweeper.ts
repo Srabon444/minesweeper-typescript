@@ -1,13 +1,13 @@
 import {times, range} from "lodash/fp"
 
-type TileStatus = typeof TILE_STATUSES[number];
+type TileStatus = (typeof TILE_STATUSES)[number];
 
-type Position = {
+export type Position = {
     x: number;
     y: number;
 }
 
-type Tile = Position & {
+export type Tile = Position & {
     mine: boolean;
     adjacentMinesCount?: number;
     status: TileStatus;
@@ -24,7 +24,7 @@ export function createBoard(boardSize: number, minePositions: Position[]):Board 
                 x,
                 y,
                 mine: minePositions.some(minePos => {
-                    positionMatch(minePos, {x, y})
+                    return positionMatch(minePos, {x, y})
                 }),
                 status: "hidden",
             }
