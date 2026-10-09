@@ -30,7 +30,7 @@ This Mine Sweeper created using HTML, Javascript, and CSS
 Clone the project
 
 ```bash
-  git clone https://gitlab.com/srabon444/minesweeper-typescript.git
+  git clone https://github.com/Srabon444/minesweeper-typescript.git
 ```
 
 Install dependencies
